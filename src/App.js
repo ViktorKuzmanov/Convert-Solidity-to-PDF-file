@@ -1,24 +1,26 @@
-import logo from './logo.svg';
+import { useState } from 'react';
+import '@wcj/dark-mode';
 import './App.css';
+import CodeEditor from '@uiw/react-textarea-code-editor';
 
 function App() {
+  const [code, setCode] = useState("")
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <div className='App'>
+      <dark-mode dark='Dark' light='Light' style={{ position: 'fixed', top: 9, left: 10}}>
+      </dark-mode>
+        <CodeEditor
+          value={code} 
+          language="sol"
+          onChange={(e) => setCode(e.target.value)}
+          padding={20}
+          className="textarea"
+          placeholder='Paste Your Solidity Code Here'
+          minHeight={120}
+        />
+        <button className='Button-print' onClick={window.print}>Print</button>
+  </div>
   );
 }
 
